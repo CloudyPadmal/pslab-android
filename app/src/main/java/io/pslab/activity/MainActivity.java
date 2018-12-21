@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     View navHeader;
+    private Menu mainMenu;
     private ImageView imgProfile;
     private TextView txtName;
 
@@ -346,6 +347,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.pslab_connectivity_menu, menu);
+        mainMenu = menu;
         return true;
     }
 
@@ -358,8 +360,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_pslab_disconnected:
                 attemptToConnectPSLab();
                 break;
-            case R.id.menu_pslab_layout:
+            case R.id.menu_pslab_layout_front:
+                PSLabPinLayoutFragment.frontSide = true;
                 displayPSLabPinLayout();
+                break;
+            case R.id.menu_pslab_layout_back:
+                PSLabPinLayoutFragment.frontSide = false;
+                displayPSLabPinLayout();
+                break;
             default:
                 break;
         }
