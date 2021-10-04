@@ -1,4 +1,4 @@
-name: pslab-android-pull-requests
+name: Build
 
 on:
   pull_request:
@@ -25,5 +25,9 @@ jobs:
     - name: Upload APK
       uses: actions/upload-artifact@v1
       with:
-        name: pslab-android-debug-apk
-        path: app/build/outputs/apk/debug/app-debug.apk
+        name: pslab-android-apk
+        path: |
+          app/build/outputs/apk/fdroid/debug/app-fdroid-debug.apk
+          app/build/outputs/apk/fdroid/release/app-fdroid-release-unsigned.apk
+          app/build/outputs/apk/playstore/debug/app-playstore-debug.apk
+          app/build/outputs/apk/playstore/release/app-playstore-release-unsigned.apk
