@@ -19,8 +19,15 @@ jobs:
         distribution: 'adopt'
         java-version: '11'
         
+    - name: Install Tree
+      run: |
+        sudo apt-get -y install tree
+        
     - name: Build with Gradle
       run: bash ./gradlew build --stacktrace
+  
+    - name: View files
+      run: tree .
       
     - name: Upload APK
       uses: actions/upload-artifact@v1
