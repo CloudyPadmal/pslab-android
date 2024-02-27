@@ -15,8 +15,10 @@ import java.io.IOException;
 public class CommunicationHandler {
 
     private final String TAG = this.getClass().getSimpleName();
-    private static final int PSLAB_VENDOR_ID = 1240;
-    private static final int PSLAB_PRODUCT_ID = 223;
+    private static final int PSLAB_VENDOR_ID_V5 = 1240;
+    private static final int PSLAB_PRODUCT_ID_V5 = 223;
+    private static final int PSLAB_VENDOR_ID_V6 = 0x10C4;
+    private static final int PSLAB_PRODUCT_ID_V6 = 0xEA60;
 
     private UsbInterface mControlInterface;
     private UsbInterface mDataInterface;
@@ -57,7 +59,8 @@ public class CommunicationHandler {
         mUsbDevice = null;
         for (final UsbDevice device : mUsbManager.getDeviceList().values()) {
             Log.d(TAG, "VID : " + device.getVendorId() + "PID : " + device.getProductId());
-            if (device.getVendorId() == PSLAB_VENDOR_ID && device.getProductId() == PSLAB_PRODUCT_ID) {
+            if ((device.getVendorId() == PSLAB_VENDOR_ID_V5 && device.getProductId() == PSLAB_PRODUCT_ID_V5) ||
+                    (device.getVendorId() == PSLAB_VENDOR_ID_V6 && device.getProductId() == PSLAB_PRODUCT_ID_V6)) {
                 Log.d(TAG, "Found PSLAB Device");
                 mUsbDevice = device;
                 device_found = true;
